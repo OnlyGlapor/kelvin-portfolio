@@ -9,7 +9,7 @@ Welcome to my personal portfolio! This project showcases my skills, projects, an
 - [Skills](#skills)
 - [Projects](#projects)
 - [Contact](#contact)
-- [License](#license)
+- [Disclaimer](#Disclaimer)
 
 ## Introduction
 
