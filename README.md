@@ -59,7 +59,7 @@ Feel free to get in touch with me!
 - **Email:** [knimely43@gmail.com](mailto:knimely43@gmail.com)
 - **Phone:** +231881796357
 - **LinkedIn:** [Kelvin Nimely on LinkedIn](https://www.linkedin.com/in/kelvin-nimely-a790b8319)
+  
+## Disclaimer
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This portfolio is a private project and is exclusively meant for personal use by Kelvin Nimely. Unauthorized use, distribution, or duplication of this code is strictly prohibited.
