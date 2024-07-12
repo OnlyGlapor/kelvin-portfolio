@@ -77,3 +77,111 @@ function isElementInViewport(el) {
   // Add event listeners
   window.addEventListener('scroll', throttle(handleScrollAnimations, 100));
   window.addEventListener('load', handleScrollAnimations);
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    emailjs.init({
+      publicKey: '-tN8u5eTcU9U3IrBI',
+      blockHeadless: true,
+      limitRate: {
+        id: 'app',
+        throttle: 10000,
+      },
+    });
+  
+    const form = document.getElementById('contactForm');
+    const externalButton = document.getElementById('externalbutton');
+    const loaderContainer = document.getElementById('loaderContainer');
+    
+    function validateForm() {
+      let isValid = true;
+      const name = form.querySelector('#from_name');
+      const email = form.querySelector('#from_email');
+      const message = form.querySelector('#message');
+      
+      // Reset previous error messages
+      clearErrorMessages();
+  
+      // Validate name
+      if (!name.value.trim()) {
+        displayErrorMessage(name, 'Name is required');
+        isValid = false;
+      }
+  
+      // Validate email
+      if (!email.value.trim()) {
+        displayErrorMessage(email, 'Email is required');
+        isValid = false;
+      } else if (!isValidEmail(email.value)) {
+        displayErrorMessage(email, 'Please enter a valid email address');
+        isValid = false;
+      }
+  
+      // Validate message
+      if (!message.value.trim()) {
+        displayErrorMessage(message, 'Message is required');
+        isValid = false;
+      }
+  
+      return isValid;
+    }
+  
+    function isValidEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+  
+    function displayErrorMessage(element, message) {
+      const errorElement = document.createElement('div');
+      errorElement.className = 'error-message';
+      errorElement.textContent = message;
+      element.parentNode.appendChild(errorElement);
+      element.classList.add('error');
+    }
+  
+    function clearErrorMessages() {
+      const errorMessages = form.querySelectorAll('.error-message');
+      errorMessages.forEach(el => el.remove());
+      form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+    }
+
+    function showLoader() {
+      loaderContainer.style.display = 'block';
+      externalButton.style.display = 'none';
+    }
+  
+    function hideLoader() {
+      loaderContainer.style.display = 'none';
+      externalButton.style.display = 'block';
+    }
+  
+    function submitButton() {
+      if (validateForm()) {
+        showLoader();
+        const formData = new FormData(form);
+        const templateParams = Object.fromEntries(formData);
+        
+        emailjs.send('service_5gsgq0p', 'template_n634hu4', templateParams)
+          .then(function(response) {
+            hideLoader();
+            console.log('SUCCESS!', response.status, response.text);
+            alert('Message sent successfully!');
+            form.reset();
+          }, function(error) {
+            hideLoader();
+            console.log('FAILED...', error);
+            alert('Failed to send message. Please try again.');
+          });
+      }
+    }
+  
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      submitButton();
+    });
+  
+    externalButton.addEventListener("click", function(e) {
+      e.preventDefault();
+      submitButton();
+    });
+  });
