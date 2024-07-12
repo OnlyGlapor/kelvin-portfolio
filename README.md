@@ -1,5 +1,3 @@
-﻿# kelvin-portfolio
-
 # Kelvin Nimely's Portfolio
 
 Welcome to my personal portfolio! This project showcases my skills, projects, and experiences as an IT professional. Built with HTML, CSS, and JavaScript, this portfolio serves as a testament to my dedication to technology and innovation.
