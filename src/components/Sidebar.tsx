@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState, useEffect } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useTransform, PanInfo } from 'framer-motion';
 import { Github, Linkedin, Twitter, Mail, Code, User, Briefcase, Award, FileText, MessageSquare, Volume2, VolumeX, Menu, X } from 'lucide-react';
 import { useAudio } from '../contexts/AudioContext';
 
@@ -72,12 +72,12 @@ export function Sidebar({
     toggleSound();
   };
 
-  // Add proper type annotations for the drag event
-  const handleDrag = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    const latestX = info.point.x as number;
-    const latestY = info.point.y as number;
-    // ... rest of the function
-  };
+  // Fix the transform type issue
+  const scale = useTransform(
+    [x, y],
+    ([currentX, currentY]: [number, number]) => 
+      Math.abs(currentX + currentY) > 0 ? 1.1 : 1
+  );
 
   return (
     <>
@@ -315,10 +315,7 @@ export function Sidebar({
           position: 'fixed',
           x,
           y,
-          scale: useTransform(
-            [x, y],
-            ([latestX, latestY]) => Math.abs(latestX + latestY) > 0 ? 1.1 : 1
-          )
+          scale,
         }}
         onDoubleClick={handleDoubleClick}
         className={`hidden lg:block p-3 rounded-full backdrop-blur-sm 
