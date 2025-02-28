@@ -132,75 +132,89 @@ export function Projects() {
               className="group relative overflow-hidden rounded-xl bg-gradient-to-b from-gray-800/50 to-gray-900/50 p-0.5"
             >
               <div className="relative rounded-[10px] bg-gray-900/90 h-full">
-                {/* Project Image with blur for in-progress projects */}
+                {/* Project Image with stronger blur for in-progress projects */}
                 <div className="relative h-48 overflow-hidden rounded-t-[10px]">
                   <img
                     src={project.image}
                     alt={project.title}
                     className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${
-                      project.inProgress ? 'blur-[2px]' : ''
+                      project.inProgress ? 'blur-lg' : ''
                     }`}
                   />
                   <div className={`absolute inset-0 bg-gradient-to-t from-gray-900 ${
-                    project.inProgress ? 'to-gray-900/80' : 'to-transparent'
-                  } opacity-60`} />
+                    project.inProgress ? 'to-gray-900/90' : 'to-transparent'
+                  } opacity-70`} />
                 </div>
 
-                {/* Project Content */}
-                <div className={`p-6 relative ${project.inProgress ? 'backdrop-blur-[1px]' : ''}`}>
-                  {project.inProgress && (
-                    <div className="absolute top-4 right-4 flex items-center gap-2">
-                      <span className="animate-pulse w-2 h-2 rounded-full bg-yellow-400" />
-                      <span className="px-2 py-1 text-xs rounded-full bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">
-                        In Development
-                      </span>
+                {/* Project Content for in-progress projects */}
+                {project.inProgress ? (
+                  <div className="p-6 relative">
+                    {/* Confidential Content */}
+                    <div className="text-center space-y-4">
+                      <div className="flex items-center justify-center gap-2 mb-6">
+                        <span className="animate-pulse w-2 h-2 rounded-full bg-yellow-400" />
+                        <span className="px-3 py-1.5 text-sm rounded-full bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">
+                          In Development
+                        </span>
+                      </div>
+                      
+                      <h3 className="text-xl font-semibold text-gray-200">{project.title}</h3>
+                      <p className="text-gray-400">
+                        Project details are currently confidential.
+                        <br />
+                        Coming soon...
+                      </p>
+
+                      {/* Placeholder Tech Stack */}
+                      <div className="flex flex-wrap gap-2 justify-center mt-4">
+                        <span className="px-3 py-1 text-xs rounded-full bg-gray-500/10 text-gray-400 border border-gray-500/20">
+                          Coming Soon
+                        </span>
+                      </div>
                     </div>
-                  )}
-                  <h3 className="text-xl font-semibold text-gray-200 mb-2">{project.title}</h3>
-                  <p className="text-gray-400 mb-4">{project.description}</p>
-
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className={`px-3 py-1 text-xs rounded-full ${
-                          project.inProgress 
-                            ? 'bg-gray-500/10 text-gray-400 border-gray-500/20'
-                            : 'bg-blue-500/10 text-blue-400 border-blue-500/20'
-                        } border`}
-                      >
-                        {tech}
-                      </span>
-                    ))}
                   </div>
+                ) : (
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-gray-200 mb-2">{project.title}</h3>
+                    <p className="text-gray-400 mb-4">{project.description}</p>
 
-                  {/* Links */}
-                  <div className="flex gap-4">
-                    {!project.inProgress && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
-                    >
-                      <Github size={16} />
-                        Source
-                    </a>
-                    )}
-                    {project.liveUrl && !project.inProgress && (
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.techStack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1 text-xs rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Links */}
+                    <div className="flex gap-4">
                       <a
-                        href={project.liveUrl}
+                        href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
                       >
-                        <ExternalLink size={16} />
-                        Demo
+                        <Github size={16} />
+                        Source
                       </a>
-                    )}
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                        >
+                          <ExternalLink size={16} />
+                          Demo
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </motion.div>
           ))}
@@ -221,61 +235,55 @@ export function Projects() {
               className="group relative overflow-hidden rounded-xl bg-gradient-to-b from-gray-800/50 to-gray-900/50 p-0.5"
             >
               <div className="relative rounded-[10px] bg-gray-900/90 p-6 h-full">
+                {/* In Development Badge */}
                 {project.inProgress && (
-                  <>
-                    {/* Frosted glass overlay */}
-                    <div className="absolute inset-0 backdrop-blur-[2px] bg-gray-900/10 rounded-[10px] z-0" />
-                    <div className="flex gap-2 items-center absolute top-4 right-4">
-                      <span className="animate-pulse w-2 h-2 rounded-full bg-yellow-400" />
-                      <span className="px-2 py-1 text-xs rounded-full bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">
-                        In Development
-                      </span>
-                    </div>
-                  </>
-                )}
-                <div className="relative z-10">
-                  <h3 className="text-lg font-semibold text-gray-200 mb-2">
-                    {project.title}
-                  </h3>
-                <p className="text-gray-400 mb-4 text-sm">{project.description}</p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-1 text-xs rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20"
-                    >
-                      {tech}
+                  <div className="flex gap-2 items-center absolute top-4 right-4 z-20">
+                    <span className="animate-pulse w-2 h-2 rounded-full bg-yellow-400" />
+                    <span className="px-2 py-1 text-xs rounded-full bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">
+                      In Development
                     </span>
-                  ))}
-                </div>
+                  </div>
+                )}
 
-                {/* Links */}
-                <div className="flex gap-4">
-                    {/* Only show source link if project is not in progress */}
-                    {!project.inProgress && (
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
-                  >
-                    <Github size={16} />
-                    Source
-                  </a>
-                    )}
-                  {project.liveUrl && (
+                {/* Project Content with Blur for In-Progress */}
+                <div className={`relative z-10 ${project.inProgress ? 'blur-md' : ''}`}>
+                  <h3 className="text-lg font-semibold text-gray-200 mb-2">{project.title}</h3>
+                  <p className="text-gray-400 mb-4 text-sm">{project.description}</p>
+
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.techStack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2 py-1 text-xs rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Links */}
+                  <div className="flex gap-4">
                     <a
-                      href={project.liveUrl}
+                      href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
                     >
-                      <ExternalLink size={16} />
-                      Demo
+                      <Github size={16} />
+                      Source
                     </a>
-                  )}
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                      >
+                        <ExternalLink size={16} />
+                        Demo
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
