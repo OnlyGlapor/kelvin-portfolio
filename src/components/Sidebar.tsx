@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState, useEffect } from 'react';
-import { motion, useMotionValue, useTransform, PanInfo } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { Github, Linkedin, Twitter, Mail, Code, User, Briefcase, Award, FileText, MessageSquare, Volume2, VolumeX, Menu, X } from 'lucide-react';
 import { useAudio } from '../contexts/AudioContext';
 
@@ -75,8 +75,7 @@ export function Sidebar({
   // Fix the transform type issue
   const scale = useTransform(
     [x, y],
-    ([currentX, currentY]: [number, number]) => 
-      Math.abs(currentX + currentY) > 0 ? 1.1 : 1
+    (latest: number[]) => Math.abs(latest[0] + latest[1]) > 0 ? 1.1 : 1
   );
 
   return (
