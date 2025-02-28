@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website built with React, TypeScript, and Framer Motion. Showcasing my projects, skills, and professional experience as a Software Engineer.
 
-![Portfolio Preview](public/og-image.png)
+![Portfolio Preview](public/portfolio-project-image.png)
 
 ## 🌟 Features
 
