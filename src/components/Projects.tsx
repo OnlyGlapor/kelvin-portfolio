@@ -44,6 +44,29 @@ export function Projects() {
       featured: true
     },
     {
+      title: "Livestream Network Compatibility Check",
+      description: "A Python application that helps streamers optimize their livestream settings based on internet speed and hardware capabilities. Features include speed testing, hardware analysis, and automated recommendations for platforms like YouTube and Facebook.",
+      image: "/images/livestream-checker.png",
+      techStack: [
+        "Python",
+        "speedtest-cli",
+        "psutil",
+        "GPUtil",
+        "Tkinter GUI"
+      ],
+      githubUrl: "https://github.com/OnlyGlapor/Livestream-Network-Compatibility-Check",
+      featured: false
+    },
+    {
+      title: "Facebook Feed Clone",
+      description: "A responsive Facebook news feed clone focusing on the user interface. Features include post creation, story carousel, and interactive elements like reactions and comments.",
+      image: "/projects/facebook-clone.png",
+      techStack: ["React", "Tailwind CSS", "React Icons", "Responsive Design"],
+      githubUrl: "https://github.com/kelvin-nimely/facebook-feed-clone",
+      liveUrl: "https://facebook-feed-clone-demo.vercel.app",
+      featured: false
+    },
+    {
       title: "🚧 EdCarry (In Development)",
       description: "A comprehensive SaaS school management system that streamlines educational operations. Built with a modern Next.js frontend and powerful Django backend, this full-stack solution offers robust features for student management, attendance tracking, grade management, and administrative tools. Designed with scalability and user experience in mind.",
       image: "/images/edcarry-preview-blur.png",
@@ -70,30 +93,7 @@ export function Projects() {
       featured: false,
       inProgress: true,
       phase: "Alpha Development"
-    },
-    {
-      title: "Livestream Network Compatibility Check",
-      description: "A Python application that helps streamers optimize their livestream settings based on internet speed and hardware capabilities. Features include speed testing, hardware analysis, and automated recommendations for platforms like YouTube and Facebook.",
-      image: "/images/livestream-checker.png",
-      techStack: [
-        "Python",
-        "speedtest-cli",
-        "psutil",
-        "GPUtil",
-        "Tkinter GUI"
-      ],
-      githubUrl: "https://github.com/OnlyGlapor/Livestream-Network-Compatibility-Check",
-      featured: false
-    },
-    {
-      title: "Facebook Feed Clone",
-      description: "A responsive Facebook news feed clone focusing on the user interface. Features include post creation, story carousel, and interactive elements like reactions and comments.",
-      image: "/projects/facebook-clone.png",
-      techStack: ["React", "Tailwind CSS", "React Icons", "Responsive Design"],
-      githubUrl: "https://github.com/kelvin-nimely/facebook-feed-clone",
-      liveUrl: "https://facebook-feed-clone-demo.vercel.app",
-      featured: false
-    },
+    }
   ];
 
   return (
@@ -174,46 +174,46 @@ export function Projects() {
                     </div>
                   </div>
                 ) : (
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-200 mb-2">{project.title}</h3>
-                    <p className="text-gray-400 mb-4">{project.description}</p>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-gray-200 mb-2">{project.title}</h3>
+                  <p className="text-gray-400 mb-4">{project.description}</p>
 
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 text-xs rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.techStack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 text-xs rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
 
-                    {/* Links */}
-                    <div className="flex gap-4">
+                  {/* Links */}
+                  <div className="flex gap-4">
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                    >
+                      <Github size={16} />
+                        Source
+                    </a>
+                    {project.liveUrl && (
                       <a
-                        href={project.githubUrl}
+                        href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
                       >
-                        <Github size={16} />
-                        Source
-                      </a>
-                      {project.liveUrl && (
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
-                        >
-                          <ExternalLink size={16} />
+                        <ExternalLink size={16} />
                           Demo
-                        </a>
-                      )}
-                    </div>
+                      </a>
+                    )}
                   </div>
+                </div>
                 )}
               </div>
             </motion.div>
@@ -247,43 +247,43 @@ export function Projects() {
 
                 {/* Project Content with Blur for In-Progress */}
                 <div className={`relative z-10 ${project.inProgress ? 'blur-md' : ''}`}>
-                  <h3 className="text-lg font-semibold text-gray-200 mb-2">{project.title}</h3>
-                  <p className="text-gray-400 mb-4 text-sm">{project.description}</p>
+                <h3 className="text-lg font-semibold text-gray-200 mb-2">{project.title}</h3>
+                <p className="text-gray-400 mb-4 text-sm">{project.description}</p>
 
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-1 text-xs rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2 py-1 text-xs rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
 
-                  {/* Links */}
-                  <div className="flex gap-4">
+                {/* Links */}
+                <div className="flex gap-4">
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                  >
+                    <Github size={16} />
+                    Source
+                  </a>
+                  {project.liveUrl && (
                     <a
-                      href={project.githubUrl}
+                      href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
                     >
-                      <Github size={16} />
-                      Source
+                      <ExternalLink size={16} />
+                      Demo
                     </a>
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
-                      >
-                        <ExternalLink size={16} />
-                        Demo
-                      </a>
-                    )}
+                  )}
                   </div>
                 </div>
               </div>

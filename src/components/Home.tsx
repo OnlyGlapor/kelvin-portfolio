@@ -132,9 +132,9 @@ export function Home({ setActiveSection }: HomeProps) {
               transition={{ duration: 0.5 }}
               className="relative inline-block"
             >
-              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Software Engineer
-              </span>
+            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Software Engineer
+            </span>
               <motion.div
                 variants={highlightVariants}
                 className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
@@ -156,9 +156,9 @@ export function Home({ setActiveSection }: HomeProps) {
               transition={{ delay: 0.8, duration: 0.5 }}
               className="relative inline-block"
             >
-              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
-                IT Professional
-              </span>
+            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
+              IT Professional
+            </span>
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}

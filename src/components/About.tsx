@@ -78,7 +78,7 @@ export function About() {
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-8 h-8">{category.icon}</div>
                   <h3 className="text-base sm:text-lg font-medium text-gray-200">{category.title}</h3>
-                </div>
+                    </div>
                 <ul className="space-y-2">
                   {category.skills.map((skill) => (
                     <li key={skill} className="text-sm sm:text-base text-gray-400">
