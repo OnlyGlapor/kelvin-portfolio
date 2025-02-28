@@ -72,6 +72,13 @@ export function Sidebar({
     toggleSound();
   };
 
+  // Add proper type annotations for the drag event
+  const handleDrag = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const latestX = info.point.x as number;
+    const latestY = info.point.y as number;
+    // ... rest of the function
+  };
+
   return (
     <>
       {/* Mobile Menu Button */}
