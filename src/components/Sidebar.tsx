@@ -72,10 +72,15 @@ export function Sidebar({
     toggleSound();
   };
 
-  // Fix the transform type issue
-  const scale = useTransform(
+  // Fix the transform function
+  const scale = useTransform<number[], number>(
     [x, y],
-    (latest: number[]) => Math.abs(latest[0] + latest[1]) > 0 ? 1.1 : 1
+    ([latestX, latestY]) => {
+      if (typeof latestX === 'number' && typeof latestY === 'number') {
+        return Math.abs(latestX + latestY) > 0 ? 1.1 : 1;
+      }
+      return 1;
+    }
   );
 
   return (

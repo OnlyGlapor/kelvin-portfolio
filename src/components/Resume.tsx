@@ -1,7 +1,7 @@
 /** @jsx React.createElement */
 import React from 'react';
 
-export const Resume = () => {
+export const Resume: React.FC = () => {
   return (
     <div className="space-y-6">
       <h1 className="text-4xl font-bold text-white mb-8">Resume</h1>
